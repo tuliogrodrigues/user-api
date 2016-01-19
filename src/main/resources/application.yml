@@ -1,0 +1,20 @@
+#Server
+server:
+  port: 8081
+  contextPath: /user-api
+
+eureka:
+  instance:
+    hostname: user-api
+    nonSecurePort: 8081
+    leaseRenewalIntervalInSeconds: 15
+    prefer-ip-address: true
+    statusPageUrlPath: /user-api/info
+    healthCheckUrlPath: /user-api/health
+  client:
+    region: default
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+    healthcheck:
+      enabled: true
+    registryFetchIntervalSeconds: 5
