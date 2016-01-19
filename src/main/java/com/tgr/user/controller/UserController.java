@@ -1,5 +1,11 @@
 package com.tgr.user.controller;
 
+import com.tgr.user.domain.User;
+import com.tgr.user.domain.assembler.UserResource;
+import com.tgr.user.domain.assembler.UserResourceAssembler;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -8,7 +14,16 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class UserController implements UserClient {
 
-    public String getUser() {
-        return "{name:'foo', lastName: 'boo'}";
+    private static final Logger logger = LoggerFactory.getLogger(UserController.class);
+
+    @Autowired
+    private UserResourceAssembler userResourceAssembler;
+
+    public UserResource getUser() {
+        User user = new User();
+        user.setFirstName("Tulio");
+        user.setLastName("Rodrigues");
+        return userResourceAssembler.toResource(user);
     }
+
 }
