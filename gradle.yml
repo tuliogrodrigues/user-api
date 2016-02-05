@@ -2,3 +2,12 @@ rootProject:
   userName: user-api
 group: com.tgr
 version: 0.0.1
+
+spring:
+  data:
+    mongodb:
+      username: tgr
+      uri: mongodb://localhost:27017/tgrdb
+#      database: tgrdb
+#      host: localhost
+#      port: 27017

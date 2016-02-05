@@ -1,22 +1,30 @@
 package com.tgr.user.domain;
 
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+
+import javax.validation.constraints.NotNull;
 import java.util.List;
 
 /**
  * Created by trodrigues on 1/19/16.
  */
+@Document
 public class User {
 
+    @Id
     private String id;
 
     private String documentId;
 
+    @NotNull
     private String firstName;
 
     private String lastName;
 
     private String phone;
 
+    @NotNull
     private String email;
 
     private Gender gender;

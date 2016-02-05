@@ -7,6 +7,8 @@ import java.io.Serializable;
  */
 public class Address implements Serializable {
 
+    private String id;
+
     private String userId;
 
     private String label;
@@ -28,6 +30,14 @@ public class Address implements Serializable {
     private String zipcode;
 
     private Boolean main;
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
 
     public String getUserId() {
         return userId;
