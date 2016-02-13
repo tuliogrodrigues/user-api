@@ -1,7 +1,6 @@
 package com.tgr.user.controller;
 
 import com.tgr.user.domain.User;
-import com.tgr.user.domain.assembler.UserResource;
 import com.tgr.user.domain.assembler.UserResourceAssembler;
 import com.tgr.user.exceptions.BadRequestException;
 import com.tgr.user.exceptions.NotFoundException;
@@ -32,38 +31,38 @@ public class UserController {
 
     @ResponseStatus(HttpStatus.OK)
     @RequestMapping(value = "", method = RequestMethod.GET)
-    public List<UserResource> list() {
+    public List<UserResourceAssembler.UserResource> list() {
 
         logger.info("Retrieve all users");
 
         return userService
                 .listAll()
                 .stream()
-                .map( u -> userResourceAssembler.toResource(u))
+                .map(userResourceAssembler::toResource)
                 .collect(Collectors.toList());
     }
 
     @ResponseStatus(HttpStatus.OK)
     @RequestMapping(value = "/{userId}", method = RequestMethod.GET)
-    public UserResource get(@PathVariable String userId) {
+    public UserResourceAssembler.UserResource get(@PathVariable String userId) {
 
         logger.info("Retrieve user data to id: " + userId);
 
         return userService
                 .getById(userId)
-                .map( u -> userResourceAssembler.toResource(u))
+                .map(userResourceAssembler::toResource)
                 .orElseThrow(new NotFoundException());
     }
 
     @ResponseStatus(HttpStatus.OK)
     @RequestMapping(method = RequestMethod.POST)
-    public UserResource create(@RequestBody User user) {
+    public UserResourceAssembler.UserResource create(@RequestBody User user) {
 
         logger.info("Creating user " + user);
 
         return userService
                 .create(user)
-                .map(u -> userResourceAssembler.toResource(u))
+                .map(userResourceAssembler::toResource)
                 .orElseThrow(new BadRequestException());
     }
 }
