@@ -1,12 +1,17 @@
 package com.tgr.user.domain;
 
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+
 import java.io.Serializable;
 
 /**
  * Created by trodrigues on 1/19/16.
  */
+@Document
 public class Address implements Serializable {
 
+    @Id
     private String id;
 
     private String userId;
